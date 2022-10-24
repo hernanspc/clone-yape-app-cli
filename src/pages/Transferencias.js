@@ -8,7 +8,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 const Transferencias = () => {
 
     const [phoneNumber, setPhoneNumber] = useState('')
-    const [numberScan, setNumberScan] = useState('')
     const [amount, setAmount] = useState(0)
     const navigation = useNavigation();
     const { top } = useSafeAreaInsets();
@@ -46,6 +45,7 @@ const Transferencias = () => {
         useCallback(() => {
             console.log('useFocusEffect ', params?.scan)
             setPhoneNumber(params?.scan)
+            setAmount('')
         }, [params?.scan])
     );
 

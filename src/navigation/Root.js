@@ -1,25 +1,14 @@
 import * as React from 'react';
-import { Pressable, View, Text, useColorScheme } from 'react-native';
+import { Pressable, View, Text, useColorScheme, Button } from 'react-native';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../pages/Home';
 import Transferencias from '../pages/Transferencias';
 import Mensaje from '../pages/Mensaje';
 import ScanScreen from '../pages/Scanner'
-
-function Story({ navigation }) {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 20 }}>Our Story</Text>
-            <Pressable
-                onPress={() => navigation.navigate('Conference')}
-                style={{ padding: 10, marginBottom: 10, marginTop: 10 }}
-            >
-                <Text>Go to Conference</Text>
-            </Pressable>
-        </View>
-    );
-}
+import TransferStack from '../stack/TransferStack';
+import HomeStack from '../stack/HomeStack';
+import { Icon } from 'react-native-vector-icons/Icon';
 
 const Drawer = createDrawerNavigator();
 
@@ -27,36 +16,30 @@ function App() {
     const scheme = useColorScheme();
 
     return (
-        <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-            <Drawer.Navigator>
+        <NavigationContainer
+            theme={scheme === 'dark' ? DarkTheme : DefaultTheme}
+        >
+            <Drawer.Navigator
+                screenOptions={{ headerShown: false }}
+            >
                 <Drawer.Screen
                     name="Home"
                     options={{
-                        title: 'Transacciones'
+                        title: 'Transacciones',
                     }}
-                    component={Home} />
+                    component={HomeStack}
+                />
                 <Drawer.Screen
-                    name="Transferencias"
+                    name="TransferStack"
                     options={{
                         title: 'Transferencias'
                     }}
-                    component={Transferencias} />
-                <Drawer.Screen
-                    name="Mensaje"
+                    component={TransferStack} />
 
-                    options={{
-                        title: 'Mensaje',
-                    }}
-                    component={Mensaje} />
-                <Drawer.Screen
-                    name="ScanScreen"
-                    options={{
-                        title: 'ScanScreen',
-                    }}
-                    component={ScanScreen} />
             </Drawer.Navigator>
         </NavigationContainer>
     );
 }
 
 export default App;
+
