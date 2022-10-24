@@ -20,13 +20,7 @@ const Scanner = () => {
         // Linking.openURL(e.data).catch(err =>
         //     console.error('An error occured', err)
         // );
-
-        (e.data).then(() => {
-            setData(e.data)
-        }).catch(err =>
-            console.error('An error occured', err)
-        );
-
+        setData(e.data)
     };
     const handleCapture = () => {
         if (!data) {
