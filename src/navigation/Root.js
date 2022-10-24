@@ -3,6 +3,7 @@ import { Pressable, View, Text, useColorScheme } from 'react-native';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../pages/Home';
+import Transferencias from '../pages/Transferencias';
 
 function Story({ navigation }) {
     return (
@@ -37,7 +38,7 @@ function App() {
                     options={{
                         title: 'Transferencias'
                     }}
-                    component={Story} />
+                    component={Transferencias} />
             </Drawer.Navigator>
         </NavigationContainer>
     );
