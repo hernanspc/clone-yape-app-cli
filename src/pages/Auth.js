@@ -39,9 +39,8 @@ function Auth() {
         >
             <Image
                 source={image}
-                style={{ width: 178, height: 178, alignSelf: "center" }}
+                style={{ width: 178, height: 178, alignSelf: "center", borderRadius: 85 }}
             />
-            {/* {authState === "default" && <DefaultAuth />} */}
             {authState === "signIn" && <SignIn />}
             <StatusBar
                 barStyle={theme === "dark" ? "light-content" : "dark-content"}

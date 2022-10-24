@@ -32,7 +32,8 @@ function AuthProvider({ children }) {
     try {
       setIsLoading(true);
 
-      setTimeout(() => {
+      setTimeout(function () {
+        // console.log("Hola Mundo");
         dispatch(
           setUser({
             id: '1',
@@ -40,11 +41,12 @@ function AuthProvider({ children }) {
             email: email,
           })
         );
-      }, 3000);
+        setIsLoading(false);
+        console.log("user signed In");
+        setAuthState("signedIn");
 
-      setIsLoading(false);
-      console.log("user signed In");
-      setAuthState("signedIn");
+      }, 2000);
+
     } catch (e) {
       alert(e.message);
       setIsLoading(false);

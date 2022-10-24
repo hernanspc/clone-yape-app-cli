@@ -21,7 +21,8 @@ const SignIn = () => {
     return (
         <View>
             <MyText type="title" style={{
-                marginBottom: 30,
+                marginVertical: 30,
+                alignSelf: "center",
                 // fontFamily: 'Lobster-Regular',
             }}>
                 Hola 👋🏻, Bienvenido

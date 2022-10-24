@@ -4,6 +4,7 @@ const tintColorDark = "#E7E7E7";
 export default {
     light: {
         text: "#0D0D0D",
+        caption: "#0D0D0D",
         background: "#F2F2F4",
         tint: tintColorLight,
         tabIconDefault: "#ccc",
@@ -14,6 +15,7 @@ export default {
     },
     dark: {
         text: "#F2F2F4",
+        caption: "#F2F2F4",
         background: "#0D0D0D",
         tint: tintColorDark,
         tabIconDefault: "#ccc",

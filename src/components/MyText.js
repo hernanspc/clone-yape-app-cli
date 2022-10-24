@@ -4,6 +4,7 @@ import Colors from "../constants/colors";
 
 export default function MyText({ children, type = "body", style }) {
   const theme = useColorScheme();
+
   return (
     <Text style={[styles[type], { color: Colors[theme].caption }, style]}>
       {children}
