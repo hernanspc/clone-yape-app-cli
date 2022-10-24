@@ -6,7 +6,7 @@ import {
     Linking,
     View
 } from 'react-native';
-import React from 'react'
+import React, { useState } from 'react'
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import { useNavigation } from '@react-navigation/native';
@@ -14,22 +14,29 @@ import MyButton from '../components/MyButton';
 
 const Scanner = () => {
     const navigation = useNavigation();
+    const [data, setData] = useState('')
 
-    HandleSuccess = e => {
-        Linking.openURL(e.data).catch(err =>
+    const handleSuccess = e => {
+        // Linking.openURL(e.data).catch(err =>
+        //     console.error('An error occured', err)
+        // );
+
+        Linking.openURL(e.data).then(() => {
+            setData(e.data)
+        }).catch(err =>
             console.error('An error occured', err)
         );
 
     };
-    handleCapture = () => {
-        const scan = '999000888';
+    const handleCapture = () => {
+        const scan = data;
         navigation.navigate('Transferencias', { scan: scan })
     }
 
     return (
         <>
             <QRCodeScanner
-                onRead={HandleSuccess}
+                onRead={handleSuccess}
                 flashMode={RNCamera.Constants.FlashMode.torch}
                 topContent={
                     <Text style={styles.centerText}>
