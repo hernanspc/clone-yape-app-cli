@@ -35,7 +35,7 @@ const Transferencias = () => {
         const content = await rawResponse.json();
         console.log(content);
         setAmount('')
-        navigation.navigate('Mensaje', { content: content })
+        navigation.navigate('Mensaje', { content: content, phone: body?.phoneNumber })
         // Alert.alert(content.mensaje + '', 'Operacion ' + content.operacion)
     }
 

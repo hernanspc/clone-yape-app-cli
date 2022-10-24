@@ -18,7 +18,7 @@ const Mensaje = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', padding: 30 }}>
             <MyText type='title'>{content?.mensaje}</MyText>
-
+            <MyText type='title'>{content?.phone}</MyText>
             <MyText >{content?.operacion}</MyText>
 
             <MyButton title="Regresar" type='primaryYape' onPress={handlePress} />
