@@ -16,24 +16,21 @@ const Transferencias = () => {
     const { params } = router;
 
     const handlePost = async () => {
-
         if (!phoneNumber || !amount) {
             alert('Please enter a valid phone number and amount')
             return;
         }
-
         const body = {
             phoneNumber: phoneNumber,
             amount: amount
         }
-        console.log('body', body)
         const rawResponse = await fetch('https://transfer-project-313f8.web.app/operacion.json', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ a: 1, b: 'Textual content' })
+            body: JSON.stringify(body)
         });
         const content = await rawResponse.json();
         console.log(content);

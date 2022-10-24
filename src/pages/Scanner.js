@@ -10,6 +10,7 @@ import React from 'react'
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import { useNavigation } from '@react-navigation/native';
+import MyButton from '../components/MyButton';
 
 const Scanner = () => {
     const navigation = useNavigation();
@@ -38,9 +39,13 @@ const Scanner = () => {
                     </Text>
                 }
                 bottomContent={
-                    <TouchableOpacity style={styles.buttonTouchable} onPress={handleCapture}>
-                        <Text style={styles.buttonText}>OK. Got it!</Text>
-                    </TouchableOpacity>
+                    <MyButton
+                        title={'Go it'}
+                        onPress={
+                            handleCapture
+                        }
+                        type='primaryYape'
+                    />
                 }
             />
         </>
