@@ -55,7 +55,7 @@ const Scanner = () => {
                     }}>
                         {data ?
                             <MyButton
-                                title='Numero obtenido, Continuar...'
+                                title='✨✨✨ Numero obtenido, Continuar...'
                                 onPress={
                                     handleCapture
                                 }
