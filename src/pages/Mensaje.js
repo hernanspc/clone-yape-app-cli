@@ -8,7 +8,7 @@ const Mensaje = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const { params } = route
-    const { content } = params;
+    const { content, phone } = params;
 
     handlePress = () => {
         navigation.setParams({ scan: '' });
@@ -16,10 +16,10 @@ const Mensaje = () => {
     }
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', padding: 30 }}>
-            <MyText type='title'>{content?.mensaje}</MyText>
-            <MyText type='title'>{content?.phone}</MyText>
-            <MyText >{content?.operacion}</MyText>
+        <View style={{ flex: 1, alignItems: 'center', padding: 10 }}>
+            <MyText type='title'>✨ {content?.mensaje}</MyText>
+            <MyText type='body'>Numero {phone}</MyText>
+            <MyText >Numero Operacion: {content?.operacion}</MyText>
 
             <MyButton title="Regresar" type='primaryYape' onPress={handlePress} />
         </View>

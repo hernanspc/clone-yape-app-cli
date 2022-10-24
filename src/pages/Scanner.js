@@ -11,6 +11,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import { useNavigation } from '@react-navigation/native';
 import MyButton from '../components/MyButton';
+import MyText from '../components/MyText';
 
 const Scanner = () => {
     const navigation = useNavigation();
@@ -40,11 +41,8 @@ const Scanner = () => {
                 onRead={handleSuccess}
                 flashMode={RNCamera.Constants.FlashMode.torch}
                 topContent={
-                    <Text style={styles.centerText}>
-                        Go to{' '}
-                        <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
-                        your computer and scan the QR code.
-                    </Text>
+                    <MyText type='body'>Por favor escanea el QR y presionar el boton de abajo</MyText>
+
                 }
                 bottomContent={
                     <View style={{

@@ -48,7 +48,8 @@ export default function MyButton({
 
   return (
     <TouchableOpacity
-      style={[styles.button, buttonStyle, style,
+      style={[styles.button, buttonStyle,
+        style,
       disabled ? { backgroundColor: 'gray' } : null,
       ]}
       onPress={onPress}

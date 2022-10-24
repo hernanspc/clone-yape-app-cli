@@ -16,10 +16,19 @@ const Transferencias = () => {
     const { params } = router;
 
     const handlePost = async () => {
+
         if (!phoneNumber || !amount) {
-            alert('Please enter a valid phone number and amount')
+            alert('Es necesario ingresar el Nro de celular y el monto')
             return;
+        } else {
+            if (phoneNumber.length === 9) {
+                console.log('OK')
+            } else {
+                alert('Es necesario que el telefono sea igual a 9 digitos')
+                return;
+            }
         }
+
         const body = {
             phoneNumber: phoneNumber,
             amount: amount
@@ -75,7 +84,7 @@ const Transferencias = () => {
             />
 
             <MyButton
-                title={'Transferrir'}
+                title={'Transferir'}
                 type='primaryYape'
                 onPress={handlePost}
                 style={{ marginTop: 20 }}
