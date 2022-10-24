@@ -5,6 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../pages/Home';
 import Transferencias from '../pages/Transferencias';
 import Mensaje from '../pages/Mensaje';
+import ScanScreen from '../pages/Scanner'
 
 function Story({ navigation }) {
     return (
@@ -47,6 +48,12 @@ function App() {
                         title: 'Mensaje',
                     }}
                     component={Mensaje} />
+                <Drawer.Screen
+                    name="ScanScreen"
+                    options={{
+                        title: 'ScanScreen',
+                    }}
+                    component={ScanScreen} />
             </Drawer.Navigator>
         </NavigationContainer>
     );
