@@ -24,7 +24,11 @@ const TransferStack = () => {
                     ),
                 }}
             />
-            <Stack.Screen name="Mensaje" component={Mensaje} />
+            <Stack.Screen
+                options={{ presentation: "modal", headerShown: false }}
+                name="Mensaje"
+                component={Mensaje}
+            />
             <Stack.Screen name="ScanScreen" component={ScanScreen} />
         </Stack.Navigator>
     )

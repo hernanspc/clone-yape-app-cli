@@ -1,5 +1,5 @@
 import { Alert, StyleSheet, Text, View } from 'react-native'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useLayoutEffect, useState } from 'react'
 import MyButton from '../components/MyButton'
 import MyInput from '../components/MyInput'
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
@@ -15,9 +15,13 @@ const Transferencias = () => {
     const router = useRoute();
     const { params } = router;
 
-
-
     const handlePost = async () => {
+
+        if (!phoneNumber || !amount) {
+            alert('Please enter a valid phone number and amount')
+            return;
+        }
+
         const body = {
             phoneNumber: phoneNumber,
             amount: amount
@@ -33,6 +37,7 @@ const Transferencias = () => {
         });
         const content = await rawResponse.json();
         console.log(content);
+        setAmount('')
         navigation.navigate('Mensaje', { content: content })
         // Alert.alert(content.mensaje + '', 'Operacion ' + content.operacion)
     }
@@ -45,9 +50,14 @@ const Transferencias = () => {
         useCallback(() => {
             console.log('useFocusEffect ', params?.scan)
             setPhoneNumber(params?.scan)
-            setAmount('')
+
         }, [params?.scan])
     );
+
+    useLayoutEffect(() => {
+        setPhoneNumber('')
+        setAmount('')
+    }, [navigation]);
 
     return (
         <View style={{ flex: 1, marginTop: top + 20, marginBottom: 20, marginHorizontal: 20 }}>
@@ -64,6 +74,7 @@ const Transferencias = () => {
                 style={{ fontSize: 18, }}
                 keyboardType={'numeric'}
                 onChangeText={setAmount}
+                value={amount}
             />
 
             <MyButton
