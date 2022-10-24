@@ -1,11 +1,21 @@
 import { Alert, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import MyButton from '../components/MyButton'
 import MyInput from '../components/MyInput'
+import { useNavigation } from '@react-navigation/native'
 
 const Transferencias = () => {
 
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [amount, setAmount] = useState(0)
+    const navigation = useNavigation();
+
     const handlePost = async () => {
+        const body = {
+            phoneNumber: phoneNumber,
+            amount: amount
+        }
+        console.log('body', body)
         const rawResponse = await fetch('https://transfer-project-313f8.web.app/operacion.json', {
             method: 'POST',
             headers: {
@@ -16,16 +26,26 @@ const Transferencias = () => {
         });
         const content = await rawResponse.json();
         console.log(content);
-
-        Alert.alert(content.mensaje + '', 'Operacion ' + content.operacion)
+        navigation.navigate('Mensaje', { content: content })
+        // Alert.alert(content.mensaje + '', 'Operacion ' + content.operacion)
     }
 
+    console.log('phoneNumber', phoneNumber)
+
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <MyInput
-                label={"Correo Electronico"}
+                label={"Digite numero a transferir"}
                 style={{ fontSize: 18, }}
                 placeholder={'Numero a transferir'}
+                keyboardType={'phone-pad'}
+                onChangeText={setPhoneNumber}
+            />
+            <MyInput
+                label={"Monto"}
+                style={{ fontSize: 18, }}
+                keyboardType={'numeric'}
+                onChangeText={setAmount}
             />
 
             <MyButton

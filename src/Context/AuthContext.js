@@ -33,20 +33,25 @@ function AuthProvider({ children }) {
       setIsLoading(true);
 
       setTimeout(function () {
-        // console.log("Hola Mundo");
-        dispatch(
-          setUser({
-            id: '1',
-            username: email,
-            email: email,
-          })
-        );
-        setIsLoading(false);
-        console.log("user signed In");
-        setAuthState("signedIn");
 
-      }, 2000);
+        if (email === 'Hernan@gmail.com' && password === '1234') {
+          dispatch(
+            setUser({
+              id: '1',
+              username: email,
+              email: email,
+            })
+          );
+          console.log("user signed In");
+          setAuthState("signedIn");
+        } else {
+          alert('Usuario o contraseña icorrectos')
+          return
+        }
 
+      }, 100);
+
+      setIsLoading(false);
     } catch (e) {
       alert(e.message);
       setIsLoading(false);

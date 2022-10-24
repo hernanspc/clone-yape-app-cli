@@ -4,6 +4,7 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../pages/Home';
 import Transferencias from '../pages/Transferencias';
+import Mensaje from '../pages/Mensaje';
 
 function Story({ navigation }) {
     return (
@@ -39,6 +40,13 @@ function App() {
                         title: 'Transferencias'
                     }}
                     component={Transferencias} />
+                <Drawer.Screen
+                    name="Mensaje"
+
+                    options={{
+                        title: 'Mensaje',
+                    }}
+                    component={Mensaje} />
             </Drawer.Navigator>
         </NavigationContainer>
     );

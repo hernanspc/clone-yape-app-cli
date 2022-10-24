@@ -6,7 +6,6 @@ import colors from '../constants/colors';
 import MyText from './MyText';
 
 export const FlatListMenuItem = ({ menuItem }) => {
-    console.log('menuItem', menuItem)
     const { cliente, fechaoperacion, monto } = menuItem;
 
     const colorScheme = useColorScheme();
