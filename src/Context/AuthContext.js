@@ -34,7 +34,7 @@ function AuthProvider({ children }) {
 
       setTimeout(function () {
 
-        if (email === 'Hernan@gmail.com' && password === '1234') {
+        if (email.toLowerCase() === 'Hernan@gmail.com'.toLowerCase() && password === '1234') {
           dispatch(
             setUser({
               id: '1',
@@ -49,7 +49,7 @@ function AuthProvider({ children }) {
           return
         }
 
-      }, 100);
+      }, 3000);
 
       setIsLoading(false);
     } catch (e) {
