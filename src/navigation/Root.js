@@ -36,7 +36,7 @@ function App() {
                     }}
                     component={Home} />
                 <Drawer.Screen
-                    name="Story"
+                    name="Transferencias"
                     options={{
                         title: 'Transferencias'
                     }}

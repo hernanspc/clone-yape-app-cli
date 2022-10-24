@@ -9,14 +9,21 @@ import {
 import React from 'react'
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
+import { useNavigation } from '@react-navigation/native';
 
 const Scanner = () => {
+    const navigation = useNavigation();
+
     HandleSuccess = e => {
         Linking.openURL(e.data).catch(err =>
             console.error('An error occured', err)
         );
 
     };
+    handleCapture = () => {
+        const scan = '999000888';
+        navigation.navigate('Transferencias', { scan: scan })
+    }
 
     return (
         <>
@@ -31,7 +38,7 @@ const Scanner = () => {
                     </Text>
                 }
                 bottomContent={
-                    <TouchableOpacity style={styles.buttonTouchable}>
+                    <TouchableOpacity style={styles.buttonTouchable} onPress={handleCapture}>
                         <Text style={styles.buttonText}>OK. Got it!</Text>
                     </TouchableOpacity>
                 }
