@@ -21,7 +21,7 @@ const Scanner = () => {
         //     console.error('An error occured', err)
         // );
 
-        Linking.openURL(e.data).then(() => {
+        (e.data).then(() => {
             setData(e.data)
         }).catch(err =>
             console.error('An error occured', err)
@@ -59,7 +59,7 @@ const Scanner = () => {
                                 onPress={
                                     handleCapture
                                 }
-                                type='primaryMovistar'
+                                type='primaryYape'
                             />
                             : null}
                     </View>
