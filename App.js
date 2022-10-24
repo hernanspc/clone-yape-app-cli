@@ -1,19 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { Appearance, AppState, useColorScheme } from 'react-native';
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { store } from './src/app/store';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { setDarkTheme, setLightTheme } from './src/features/theme';
+import AuthScreen from './src/pages/Auth'
 
 export default function Wrapper() {
-
-  useEffect(() => {
-
-    AppState.addEventListener('change', (status) => {
-      console.log('AppState change: ', status)
-
-    })
-  }, [])
-
   return (
     <Provider store={store}>
       <App />
@@ -22,11 +15,32 @@ export default function Wrapper() {
 }
 
 function App() {
-  return (
-    <View>
-      <Text>App</Text>
-    </View>
-  )
+  const dispatch = useDispatch();
+  const [user, setUser] = useState(false)
+
+  useEffect(() => {
+    AppState.addEventListener('change', (status) => {
+      if (status === 'active') {
+        (Appearance?.getColorScheme() === 'light')
+          ?
+          dispatch(
+            setLightTheme()
+          )
+          :
+          dispatch(
+            setDarkTheme()
+          )
+
+      }
+      console.log('AppState change: ', status)
+    })
+  }, [])
+
+  return user ? (
+    <Root user={user} s />
+  ) : (
+    <AuthScreen />
+  );
 }
 
 
