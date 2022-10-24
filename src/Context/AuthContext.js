@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import { useDispatch } from "react-redux";
-// import { setUser } from "../features/user";
+import { setUser } from "../features/user";
 
 const AuthContext = createContext({
   authState: '',
@@ -32,19 +32,15 @@ function AuthProvider({ children }) {
     try {
       setIsLoading(true);
 
-      // dispatch(
-      //   setUser({
-      //     id: userFromDB.data.getUser.id,
-      //     firstName: userFromDB.data.getUser.firstName,
-      //     lastName: userFromDB.data.getUser.lastName,
-      //     profilePicture: userFromDB.data.getUser.profilePicture,
-      //     email: userFromDB.data.getUser.email.toLowerCase(),
-      //     status: userFromDB.data.getUser.status,
-      //     notificationToken: userFromDB.data.getUser.notificationToken,
-      //     latitude: userFromDB.data.getUser.latitude,
-      //     longitude: userFromDB.data.getUser.longitude,
-      //   })
-      // );
+      setTimeout(() => {
+        dispatch(
+          setUser({
+            id: '1',
+            username: email,
+            email: email,
+          })
+        );
+      }, 3000);
 
       setIsLoading(false);
       console.log("user signed In");

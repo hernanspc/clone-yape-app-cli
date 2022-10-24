@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { Appearance, AppState, useColorScheme } from 'react-native';
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { store } from './src/app/store';
 import { useEffect, useState } from 'react';
 import { setDarkTheme, setLightTheme } from './src/features/theme';
 import AuthScreen from './src/pages/Auth'
+import Root from './src/navigation/Root';
 
 export default function Wrapper() {
   return (
@@ -16,7 +17,7 @@ export default function Wrapper() {
 
 function App() {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(false)
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     AppState.addEventListener('change', (status) => {
@@ -36,8 +37,8 @@ function App() {
     })
   }, [])
 
-  return user ? (
-    <Root user={user} s />
+  return user?.email ? (
+    <Root user={user} />
   ) : (
     <AuthScreen />
   );

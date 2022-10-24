@@ -5,6 +5,9 @@ const Root = () => {
     return (
         <View>
             <Text>Root</Text>
+            <Text>Root</Text>
+            <Text>Root</Text>
+
         </View>
     )
 }

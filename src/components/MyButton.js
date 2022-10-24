@@ -4,14 +4,14 @@ import {
   useColorScheme,
   StyleSheet,
 } from "react-native";
-import Colors from "../constants/colors";
+import Colors, { colorsMovistar, yapeColor } from "../constants/colors";
 
 export default function MyButton({
   title,
   onPress,
   type = "primary",
   style,
-  children,
+  disabled,
   ...otherProps
 }) {
   const theme = useColorScheme();
@@ -21,32 +21,40 @@ export default function MyButton({
       ? styles.primaryLight
       : theme === "light" && type === "secondary"
         ? styles.secondaryLight
-        : theme === "light" && type === "primaryMovistar"
-          ? styles.primaryMovistarLight
-          : theme === "light" && type === "secondaryMovistar"
-            ? styles.secondaryMovistarLight
-            : theme === "dark" && type === "primary"
-              ? styles.primaryDark
-              : styles.secondaryDark;
+        : theme === "dark" && type === "primary"
+          ? styles.primaryDark
+          : theme === "light" && type === "primaryYape"
+            ? styles.primaryMovistarLight
+            : theme === "dark" && type === "primaryYape"
+              ? styles.primaryMovistarDark
+              : theme === "light" && type === "secondaryMovistar"
+                ? styles.secondaryMovistarLight
+                : theme === "dark" && type === "secondaryMovistar"
+                  ? styles.secondaryMovistarDark
+                  : styles.secondaryDark;
 
   const textStyle =
     theme === "light" && type === "primary"
       ? Colors.light.background
       : theme === "light" && type === "secondary"
         ? Colors.light.text
-        : theme === "light" && type === "secondaryMovistar"
-          ? Colors.light.backgroundMovistar
-          : theme === "dark" && type === "primary"
-            ? Colors.dark.background
-            : Colors.light.background;
+        : theme === "dark" && type === "primary"
+          ? Colors.dark.background
+          : theme === "light" && type === "secondaryMovistar"
+            ? colorsMovistar.movistar_green
+            : theme === "dark" && type === "secondaryMovistar"
+              ? colorsMovistar.movistar_blue_dark
+              : Colors.light.background;
 
   return (
     <TouchableOpacity
-      style={[styles.button, buttonStyle, style]}
+      style={[styles.button, buttonStyle, style,
+      disabled ? { backgroundColor: 'gray' } : null,
+      ]}
       onPress={onPress}
       {...otherProps}
+      disabled={disabled}
     >
-      {children}
       <Text style={[styles.buttonText, { color: textStyle }]}>{title}</Text>
     </TouchableOpacity>
   );
@@ -62,21 +70,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  primaryMovistarLight: {
+    backgroundColor: yapeColor.android_buttons_primary,
+  },
+  primaryMovistarDark: {
+    backgroundColor: colorsMovistar.movistar_blue_dark,
+  },
+  secondaryMovistarLight: {
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: colorsMovistar.movistar_green,
+  },
+  secondaryMovistarDark: {
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: colorsMovistar.movistar_blue_dark,
+  },
   primaryLight: {
     backgroundColor: Colors.light.text,
-  },
-  primaryMovistarLight: {
-    backgroundColor: Colors.light.backgroundMovistar,
   },
   secondaryLight: {
     backgroundColor: "transparent",
     borderWidth: 1,
     borderColor: Colors.light.text,
-  },
-  secondaryMovistarLight: {
-    backgroundColor: "transparent",
-    borderWidth: 1,
-    borderColor: Colors.light.backgroundMovistar,
   },
   primaryDark: {
     backgroundColor: Colors.dark.text,
