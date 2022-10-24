@@ -14,7 +14,7 @@ import MyButton from '../components/MyButton';
 
 const Scanner = () => {
     const navigation = useNavigation();
-    const [data, setData] = useState('')
+    const [data, setData] = useState(null)
 
     const handleSuccess = e => {
         // Linking.openURL(e.data).catch(err =>
@@ -29,12 +29,15 @@ const Scanner = () => {
 
     };
     const handleCapture = () => {
-        const scan = data;
+        if (!data) {
+            return
+        }
+        const scan = data.substring(4, scan?.length);
         navigation.navigate('Transferencias', { scan: scan })
     }
 
     return (
-        <>
+        <View style={{ display: 'flex', flex: 1 }}>
             <QRCodeScanner
                 onRead={handleSuccess}
                 flashMode={RNCamera.Constants.FlashMode.torch}
@@ -46,16 +49,23 @@ const Scanner = () => {
                     </Text>
                 }
                 bottomContent={
-                    <MyButton
-                        title={'Go it'}
-                        onPress={
-                            handleCapture
-                        }
-                        type='primaryYape'
-                    />
+                    <View style={{
+                        position: 'absolute',
+                        top: 0,
+                    }}>
+                        {data ?
+                            <MyButton
+                                title='Numero obtenido, Continuar...'
+                                onPress={
+                                    handleCapture
+                                }
+                                type='primaryMovistar'
+                            />
+                            : null}
+                    </View>
                 }
             />
-        </>
+        </View>
     )
 }
 
