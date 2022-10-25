@@ -8,6 +8,7 @@ import MyText from './MyText';
 const SignIn = () => {
     const { setAuthState, setEmail, email, setPassword, password, handleSignIn, isLoading } =
         useContext(AuthContext);
+
     const [disabled, setdisabled] = useState(false)
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const SignIn = () => {
                 Hola 👋🏻, Bienvenido
             </MyText>
             <MyInput label={"Correo Electronico"} onChangeText={setEmail} style={{ fontSize: 18, }} placeholder={'nombre@correo.com'} />
-            <MyInput label={"Contraseña"} onChangeText={setPassword} secureTextEntry style={{ fontSize: 18, }} keyboardType='phone-pad' />
+            <MyInput label={"Contraseña"} onChangeText={setPassword} secureTextEntry={true} style={{ fontSize: 18, }} keyboardType='tel' />
 
             <MyButton
                 disabled={disabled}

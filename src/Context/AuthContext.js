@@ -25,15 +25,13 @@ function AuthProvider({ children }) {
   const dispatch = useDispatch();
 
   async function handleSignIn() {
-    if (!email || !password) {
-      alert("please enter an email and password");
-      return;
-    }
+    // if (!email || !password) {
+    //   alert("please enter an email and password");
+    //   return;
+    // }
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-
-      setTimeout(function () {
-
+      setTimeout(() => {
         if (email.toLowerCase() === 'Hernan@gmail.com'.toLowerCase() && password === '1234') {
           dispatch(
             setUser({
@@ -51,12 +49,12 @@ function AuthProvider({ children }) {
 
       }, 3000);
 
-      setIsLoading(false);
     } catch (e) {
       alert(e.message);
-      setIsLoading(false);
       console.log(e);
     }
+    setIsLoading(false);
+
   }
 
   return (
